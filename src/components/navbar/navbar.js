@@ -2,6 +2,7 @@ import './navbar.css';
 import logo from '../../assets/coronavirus.png';
 
 class Navbar extends HTMLElement {
+
     connectedCallback() {
         this.render();
     }
