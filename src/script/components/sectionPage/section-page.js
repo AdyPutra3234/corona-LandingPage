@@ -16,7 +16,7 @@ class SectionPage extends HTMLElement {
                     <p class="menu">${this._contents.section_menu}</p>
                     <h2 class="title">${this._contents.title}</h2>
                     <p class="description">${this._contents.description}</p>
-                    <a href="#">Country Cases</a>
+                    <button-comp title="${this._contents.next_section}" ></button-comp>
                 </div>    
             </div>`;
     }
