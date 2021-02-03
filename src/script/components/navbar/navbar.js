@@ -1,4 +1,4 @@
-import logo from '../../assets/coronavirus.png';
+import logo from '../../../assets/coronavirus.png';
 import './navbar.css';
 
 class Navbar extends HTMLElement {
