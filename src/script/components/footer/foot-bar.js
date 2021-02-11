@@ -17,9 +17,9 @@ class FooterBar extends HTMLElement {
                         </ul>
             
                         <ul class="use-link">
-                            <li><a href="">Dribble</a></li>
-                            <li><a href="">Freepik</a></li>
-                            <li><a href="">Flat Icon</a></li>
+                            <li><a href="https://dribbble.com">Dribble</a></li>
+                            <li><a href="https://www.freepik.com">Freepik</a></li>
+                            <li><a href="https://www.flaticon.com">Flat Icon</a></li>
                         </ul>
                 </div>
                 <div class="foot-bar2">
