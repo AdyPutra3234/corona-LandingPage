@@ -25,7 +25,7 @@ p.menu {
     box-shadow: 0 8px 18px rgba(78, 235, 194, 0.5);
     border-radius: 2em;
     border: solid 2px  rgba(78, 235, 194, 0.5) ;
-    margin-bottom: 10px;
+    margin: 40px 0;
 }
 
 h2.title {

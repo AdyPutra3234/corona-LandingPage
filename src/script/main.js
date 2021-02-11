@@ -2,7 +2,22 @@ import './components/sectionPage/section-page.js';
 import contentsPage from '../script/content.js';
 
 const main = () => {
-    
+
+    const navMenu = document.querySelectorAll('nav ul li a');
+
+    navMenu.forEach(menu => {
+
+        menu.addEventListener('click', function() {
+
+            navMenu.forEach(activeMenu => {
+                activeMenu.classList.remove('menu-clicked');
+            });
+            
+            menu.classList.add('menu-clicked');
+        });
+
+    });
+
     contentsPage.forEach( content => {
     
         const mainContentWrapper = document.querySelector('.content');
