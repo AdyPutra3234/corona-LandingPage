@@ -15,10 +15,10 @@ class Navbar extends HTMLElement {
                 <a href="">Corona</a>
             </div>
             <ul>
-                <li>About</li>
-                <li>Contagion</li>
-                <li>Symptoms</li>
-                <li>Prevention</li>
+                <li><a href="#Tentang">Tentang</a></li>
+                <li><a href="#Gejala">Gejala</a></li>
+                <li><a href="#Penularan">Penularan</a></li>
+                <li><a href="#Pencegahan">Pencegahan</a></li>
             </ul>
         </nav>`;
     }

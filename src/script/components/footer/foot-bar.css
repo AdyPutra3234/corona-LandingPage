@@ -1,0 +1,36 @@
+.foot-bar1 {
+    display: flex;
+    padding: 10px 5%;
+    background-color: darkgrey;
+}
+
+.foot-bar1 .menu {
+    flex: 1;
+}
+
+.foot-bar1 .use-link {
+    flex: 1;
+}
+
+.foot-bar1 ul li {
+    list-style: none;
+}
+
+.foot-bar1 ul li a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+.foot-bar2 {
+    background-color: rgb(88, 88, 88);
+    padding: 10px 0;
+}
+
+.foot-bar2 p {
+    margin: 0 5%;
+    color: white;
+    font-weight: 200;
+}

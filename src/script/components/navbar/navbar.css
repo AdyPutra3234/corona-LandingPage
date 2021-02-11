@@ -1,9 +1,12 @@
 nav {
     display: flex;
+    width: 100%;
+    position: relative;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background-color: #F5F4F4;
+    background-color: white;
+    box-shadow: 0 8px 18px rgba(223, 222, 222, 0.5);
 }
 
 nav .logo {
@@ -28,5 +31,21 @@ nav ul {
 
 nav ul li {
     list-style: none;
+    padding-bottom: 5px;
     margin: 0 8px;
+}
+
+nav ul li:hover {
+    border-bottom: solid 3px #48ebc0;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+nav ul li a:focus-within {
+    color: #48ebc0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
 }

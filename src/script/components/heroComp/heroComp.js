@@ -12,8 +12,8 @@ class HeroComp extends HTMLElement {
         <div class="hero">
             <div class="text-banner">
                 <h1>Save <b>yourself</b> </br> Save the <b>world</b></h1>
-                <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.</p>
-                <button-comp title="About"></button-comp>
+                <p>Penyakit COVID-19 adalah penyakit menular yang disebabkan oleh Coronavirus.</p>
+                <button-comp title="Tentang"></button-comp>
             </div>
             <img src="${heroImg}"/>
         </div>`;
