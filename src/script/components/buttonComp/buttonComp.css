@@ -1,7 +1,7 @@
 .button-wrapper a {
-    width: 40%;
-    height: 3.5em;
+    width: max-content;
     display: flex;
+    padding: 20px 30px;
     margin-top: 20px;
     border: none;
     box-shadow: 0 8px 18px rgba(78, 235, 194, 0.5);
@@ -14,4 +14,10 @@
     margin: auto !important;
     color: white !important;
     font-weight: 700;
+}
+
+@media (max-width: 700px) {
+    .button-wrapper a {
+        padding: 10px 20px;
+    }
 }

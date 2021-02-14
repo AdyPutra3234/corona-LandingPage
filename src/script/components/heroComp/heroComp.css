@@ -8,8 +8,7 @@
 
 .hero img {
     display: inline-block;
-    width: 60%;
-    height: 50%;
+    width: 50%;
 }
 
 .hero .text-banner {
@@ -34,5 +33,10 @@
 
     .hero .text-banner p {
         font-size: 0.7em;
+    }
+
+    .hero img {
+        width: 60%;
+        height: 50%;
     }
 }
