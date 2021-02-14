@@ -1,14 +1,14 @@
 .section-wrapper {
-    height: max-content;
+    height: 100vh;
+    padding: 10px 15px;
     background-color: #F5F4F4;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    padding: 40px 0;
 }
 
 .section-wrapper img {
-    margin: 50px 0;
+    margin: 50px 10px;
 }
 
 .description-wrapper {
@@ -25,7 +25,7 @@ p.menu {
     box-shadow: 0 8px 18px rgba(78, 235, 194, 0.5);
     border-radius: 2em;
     border: solid 2px  rgba(78, 235, 194, 0.5) ;
-    margin: 40px 0;
+    margin-bottom: 40px;
 }
 
 h2.title {
@@ -60,4 +60,35 @@ p.description {
 .list ul li p {
     height: max-content;
     margin: auto 5px;
+}
+
+@media(max-width:700px) {
+    .section-wrapper img {
+        flex: 0 ;
+        width: 30%;
+    }
+
+    .description-wrapper {
+        flex: 1.5;
+    }
+
+    p.description {
+        line-height: 1.5em;
+        font-size: 0.8em;
+    }
+
+    .list ul li p {
+        font-size: 0.8em;
+    }
+
+    h2.title {
+        font-size: 1em;
+        font-weight: 200;
+    }
+}
+
+@media (max-width:900px) {
+    .section-wrapper img {
+        width: 50%;
+    }
 }
