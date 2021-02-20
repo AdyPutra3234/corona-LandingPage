@@ -1,3 +1,5 @@
+const dotenv = require('dotenv');
+const webpack = require('webpack');
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
@@ -23,15 +25,22 @@ module.exports = {
             }
         ]
     },
-    plugins : [
+    plugins : [ 
+
         new HTMLWebpackPlugin ({
             template : 'src/index.html',
             filename : 'index.bundle.html'
-        })
+        }),
+
+        new webpack.DefinePlugin({
+            'process.env' : JSON.stringify(dotenv.config().parsed)
+        }),
+
     ],
+
     devServer : {
         index : 'index.bundle.html',
         compress : true,
-        port : 9090
+        port : process.env.PORT || 5050
     } 
 }
