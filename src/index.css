@@ -13,9 +13,3 @@ html {
 body {
     font-family: 'Montserrat', sans-serif;
 }
-
-#regions_div {
-    width: 75%;
-    height: 500px;
-    margin: 10px auto;
-}
