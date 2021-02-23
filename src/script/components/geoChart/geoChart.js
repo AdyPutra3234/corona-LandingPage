@@ -10,39 +10,6 @@ class GeoChart extends HTMLElement {
         
     }
 
-    // getData() {
-
-    //     return dataSource.getData('https://api.kawalcorona.com/')
-    //     .then(dataResponse => {
-
-    //         const dataTable = [['Country','Deaths']];
-
-    //         dataResponse.forEach( data => {
-            
-    //             const region = data.attributes.Country_Region;
-    //             const deathCases = data.attributes.Deaths;
-
-    //             dataTable.push([region, deathCases]);
-
-    //         });
-
-    //         return dataTable;
-
-    //     })
-
-    // }
-
-    // getDataGlobal() {
-    //     return dataSource.getData('https://covid.mathdro.id/api')
-    //         .then(result => {
-    //             return {
-    //                 confirmed : result.confirmed.value,
-    //                 deaths : result.deaths.value,
-    //                 recovered : result.recovered.value
-    //             }
-    //         })
-    // }
-
     
     getData() {
 
