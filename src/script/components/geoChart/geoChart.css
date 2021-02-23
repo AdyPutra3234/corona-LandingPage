@@ -1,5 +1,38 @@
+.data_visualization {
+    height: 90vh;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #geo_chart {
-    width: 75%;
     height: 500px;
     margin: 10px auto;
 }
+
+.data_visualization .data_global {
+    width: 50%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.data_visualization .data_global div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.data_visualization .data_global div p:first-child {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.data_visualization .data_global div p:last-child {
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
