@@ -3,36 +3,58 @@ import './geoChart.css';
 
 class GeoChart extends HTMLElement {
 
-    connectedCallback() {
+    constructor() {
 
+        super();
+        this._dataCountries = null;
+        this._dataCountry = null;
         this.render();
         this.getData();
         
     }
 
+    get dataCountries() {
+        return this._dataCountries;
+    }
+
+    set dataCountries(data) {
+        this._dataCountries = data;
+    }
+
+    get dataCountry() {
+        return this._dataCountry;
+    }
+
+    set dataCountry(data) {
+        this._dataCountry = data;
+    }
+
     
     getData() {
 
+        // get data from multiple API
         Promise.all(
             [
                 dataSource.getData('https://covid.mathdro.id/api'),
                 dataSource.getData('https://api.kawalcorona.com/')
             ])
-            .then(([globalCases,dataRegions]) => {
+            .then(([globalCases,countriesCase]) => {
 
-                
+                this.dataCountries = countriesCase; //set data all country
+
                 const dataTable = [['Negara','Meninggal']];
                 
-                dataRegions.forEach( data => {
+                countriesCase.forEach( data => {
                 
                     const region = data.attributes.Country_Region;
                     const deathCases = data.attributes.Deaths;
                     
-                    dataTable.push([region, deathCases]);
+                    dataTable.push([region, deathCases]); //add data (per country) region and deathCases to dataTable
                     
                 });
-                this.loadDataVisualizationMap(dataTable);
+                this.loadDataVisualizationMap(dataTable); //Load dataTable to data visualization
                 
+                // render data global
                 document.querySelector('.data_global').innerHTML = `
                     <div><p style="color : yellow;">${globalCases.confirmed.value}</p><p>kasus</p></div>
                     <div><p style="color : red;">${globalCases.deaths.value}</p><p>meninggal</p></div>
@@ -52,21 +74,48 @@ class GeoChart extends HTMLElement {
         });
     
             google.charts.setOnLoadCallback(this.drawMapChart(dataTable));
-
-    }
+            
+        }
 
     drawMapChart(data) {
+        
+        return () => {
+            
+            // Event onclick chart map
+            const chartOnclickHandler = () => {
 
-        return function() {
+                const selection = chart.getSelection();
+                let country = "";
 
+                selection.forEach(select => {
+
+                    country = dataVisualization.getValue(select.row , 0); //get country name by click some country on chart
+
+                }); 
+
+                // get data country by filtering data countries by country name
+                let dataCountry = this.dataCountries.filter(data => {
+
+                   return data.attributes.Country_Region === country;
+
+                });
+
+                // set data country
+                this.dataCountry = dataCountry;
+
+            }
+
+            const chart = new google.visualization.GeoChart(document.getElementById('geo_chart'));
             const dataVisualization = google.visualization.arrayToDataTable(data);
             const options = {};
-            const chart = new google.visualization.GeoChart(document.getElementById('geo_chart'));
             chart.draw(dataVisualization , options);
+            google.visualization.events.addListener(chart, 'select' , chartOnclickHandler);
 
         }
+
     }
 
+    // render component
     render() {
 
         this.innerHTML = `
