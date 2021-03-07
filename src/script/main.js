@@ -3,22 +3,6 @@ import contentsPage from '../script/content.js';
 
 const main = () => {
 
-// event click menu desktop
-    const navMenu = document.querySelectorAll('nav ul li a');
-
-    navMenu.forEach(menu => {
-
-        menu.addEventListener('click', function() {
-
-            navMenu.forEach(activeMenu => {
-                activeMenu.classList.remove('menu-clicked');
-            });
-            
-            menu.classList.add('menu-clicked');
-        });
-
-    });
-
 // Load and render Content
     contentsPage.forEach( content => {
     
@@ -29,16 +13,79 @@ const main = () => {
         mainContentWrapper.appendChild(sectionElement);
     });
 
-// Make content strip style
-    const section_wrapper = document.querySelectorAll('.section-wrapper');
-    section_wrapper.forEach( (section, index) => {
-        if (index % 2 !== 0) {
-            section.style.background = 'white';
-            section.style.flexDirection = 'row-reverse';
+
+// nav highlight by click nav menu or scroling page
+const navMenu = document.querySelectorAll('nav ul li a');
+const sections = document.querySelectorAll('section');
+
+window.addEventListener('scroll', () => {
+    
+    let curent = '';
+
+    sections.forEach(section => {
+
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+
+            curent = section.getAttribute('id');
+
+        }
+
+    });
+
+    navMenu.forEach(menu => {
+
+        menu.classList.remove('active-menu');
+
+        if (menu.classList.contains(curent)) {
+
+            menu.classList.add('active-menu');
+
         }
     });
 
+});
+
+
+// Make content strip style
+   
+const stripStyle = () => {
+
+    const section_wrapper = document.querySelectorAll('.section-wrapper');
+
+    section_wrapper.forEach( (section, index) => {
+
+        if (index % 2 !== 0) {
+            const smallMedia = window.matchMedia('(max-width: 576px)');
+
+            section.style.background = 'white';
+
+            if (!smallMedia.matches) {
+
+                section.style.flexDirection = 'row-reverse';
+
+            } else {
+                section.style.flexDirection = 'column';
+            }
+        }
+                
+    });
+
+}
+
+stripStyle();
+
+    window.matchMedia('(min-width: 578px)').addEventListener('change', function() {
+
+        stripStyle();
+
+    })
+
+
 // Show responsive mobile-menu
+
     const mobile_menu = document.querySelector('.mobile-menu');
     const humberger_icon = document.querySelector('.humberger-icon');
     const stretch_top = document.querySelector('.stretch-top'); 
@@ -63,6 +110,7 @@ const main = () => {
             
         }
     })
+
 }
 
 export default main;

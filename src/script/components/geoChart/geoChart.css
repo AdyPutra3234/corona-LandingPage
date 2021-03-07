@@ -1,38 +1,138 @@
-.data_visualization {
-    height: 90vh;
-    padding: 10px 0;
+/* .data_visualization {
+    height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    padding-top: 5%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data_wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-#geo_chart {
-    height: 500px;
-    margin: 10px auto;
+.data_wrapper #geo_chart {
+    height: 70%;
 }
 
-.data_visualization .data_global {
-    width: 50%;
-    margin-bottom: 10px;
+.data_wrapper .data_global {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
 }
 
-.data_visualization .data_global div {
+.data_visualization .data_wrapper .data_global div {
     display: flex;
     flex-direction: column;
     text-align: center;
+    margin-left: 2em;
 }
 
-.data_visualization .data_global div p:first-child {
+.data_visualization .data_wrapper .data_global div p:first-child {
     font-weight: bold;
     font-size: 1.5em;
 }
 
-.data_visualization .data_global div p:last-child {
+.data_visualization .data_wrapper .data_global div p:last-child {
     font-size: 0.8em;
     font-weight: 200;
 }
 
+#detail_wrapper {
+    height: 100%;
+    width: 30%;
+    margin-right: -30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top , lavender , transparent );
+    transition: 300ms;
+}
+
+@media screen and (max-width : 768px) {
+
+    .data_visualization .data_wrapper .data_global div {
+        font-size: 0.7rem;
+    }
+
+    #detail_wrapper {
+        position: relative;
+    }
+
+
+
+} */
+
+geo-chart {
+    position: relative;
+    width: 100%;
+    height: max-content;
+}
+
+.data_visualization {
+    height: max-content;
+    width: 100%;
+}
+
+.data_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.data_wrapper #geo_chart {
+    height: 70%;
+}
+
+.data_wrapper .data_global {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10%;
+}
+
+.data_visualization .data_wrapper .data_global div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 2em;
+}
+
+.data_visualization .data_wrapper .data_global div p:first-child {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.data_visualization .data_wrapper .data_global div p:last-child {
+    font-size: 0.8em;
+    font-weight: 200;
+}
+
+#detail_wrapper {
+    width: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top , lavender , transparent );
+    transition: 300ms;
+    margin-left: 0;
+    overflow: hidden;
+}
+
+
+@media screen and (max-width : 768px) { 
+
+    .data_visualization .data_wrapper .data_global div {
+        font-size: 0.6rem;
+    }
+
+}

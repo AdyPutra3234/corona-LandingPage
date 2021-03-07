@@ -12,7 +12,7 @@ nav {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    padding: 0.8rem 3rem;
     background-color: white;
     box-shadow: 0 8px 18px rgba(223, 222, 222, 0.5);
 }
@@ -49,15 +49,13 @@ nav ul {
 
 nav ul li {
     list-style: none;
-    padding-bottom: 5px;
-    margin: 0 8px;
 }
 
 nav ul li a:hover {
     color: #48ebc0;
 }
 
-.menu-clicked {
+.active-menu {
     color: #48ebc0;
     border: 2px solid #48ebc0;
     border-radius: 2em;
@@ -74,7 +72,25 @@ nav ul li a {
     display: none;
 }
 
-@media (max-width : 700px) {
+@media (max-width : 768px) {
+
+    nav .logo img {
+        width: 20px;
+        height: 20px;
+    }
+
+    nav .logo a {
+        font-size: 0.5rem;
+    }
+
+    nav ul li a {
+        font-size: 0.7rem;
+    }
+
+}
+
+@media (max-width : 567px) {
+
     nav {
         flex-direction: row-reverse;
     }
@@ -93,8 +109,8 @@ nav ul li a {
         justify-content: space-between;
         flex-direction: column;
         background-color: white;
-        height: 30px;
-        width: 30px;
+        height: 22px;
+        width: 20px;
         padding: 3px;
         outline: none;
         border: none;
@@ -106,10 +122,10 @@ nav ul li a {
 
     .humberger-icon span {
         display: block;
-        background-color: rgb(191, 187, 187);
-        height: 3px;
+        height: 1.5px;
         width: 100%;
-        border-radius: 3px;
+        background-color: rgb(191, 187, 187);
+        border-radius: 5px;
     }
 
     span.stretch-mid {
@@ -166,4 +182,5 @@ nav ul li a {
         border: 1px solid darkgrey;
         border-radius: 5px;
     }
+
 }

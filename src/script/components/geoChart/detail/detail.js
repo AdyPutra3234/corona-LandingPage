@@ -1,0 +1,30 @@
+import './detail.css';
+
+class Detail extends HTMLElement {
+
+    set dataDetail(data) {
+        this._data = data[0];
+        console.log(this._data);
+        this.render();
+    }
+    
+    render() {
+
+        this.innerHTML = `
+            <div class="detail" >
+                <div style="font-size:1.2rem;">${this._data.Country}</div>
+                <div style="color:yellow;">${this._data.TotalConfirmed}</div>
+                <div style="color:red;">${this._data.TotalDeaths}</div>
+                <div style="color:green;">${this._data.TotalRecovered}</div>
+                <div><button id="close_detail">close</button></div>
+            </div>`;
+
+        document.getElementById('close_detail').addEventListener('click', function() {
+            const detail_wrapper = document.getElementById('detail_wrapper');
+            detail_wrapper.style.height = '0';
+            
+        })
+    }
+}
+
+customElements.define('box-detail', Detail);

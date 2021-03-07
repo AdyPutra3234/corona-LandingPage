@@ -16,10 +16,11 @@ class Navbar extends HTMLElement {
                     <a href="">Corona</a>
                 </div>
                 <ul>
-                    <li><a href="#Tentang">Tentang</a></li>
-                    <li><a href="#Gejala">Gejala</a></li>
-                    <li><a href="#Penularan">Penularan</a></li>
-                    <li><a href="#Pencegahan">Pencegahan</a></li>
+                    <li><a class="Kasus" href="#Kasus">Kasus</a></li>
+                    <li><a class="Tentang" href="#Tentang">Tentang</a></li>
+                    <li><a class="Gejala" href="#Gejala">Gejala</a></li>
+                    <li><a class="Penularan" href="#Penularan">Penularan</a></li>
+                    <li><a class="Pencegahan" href="#Pencegahan">Pencegahan</a></li>
                 </ul>
                 <button class="humberger-icon">
                     <span class="stretch-top"></span>
@@ -29,6 +30,7 @@ class Navbar extends HTMLElement {
             </nav>
             <div class="mobile-menu">
                 <ul>
+                    <li><a class="Kasus" href="#Kasus">Kasus</a></li>
                     <li><a href="#Tentang">Tentang</a></li>
                     <li><a href="#Gejala">Gejala</a></li>
                     <li><a href="#Penularan">Penularan</a></li>

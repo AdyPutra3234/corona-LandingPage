@@ -27,7 +27,7 @@ class SectionPage extends HTMLElement {
             }
 
             this.innerHTML = `
-            <div id="${this._contents.section_menu}" class="section-wrapper">
+            <section id="${this._contents.section_menu}" class="section-wrapper">
                 <img src="${this._contents.image}" />
                 <div class="description-wrapper">
                     <p class="menu">${this._contents.section_menu}</p>
@@ -36,7 +36,7 @@ class SectionPage extends HTMLElement {
                     ${list}
                     ${this._contents.next_section? `<button-comp title="${this._contents.next_section}"></button-comp>`: ''}
                 </div>    
-            </div>`;
+            </section>`;
     }
 }
 

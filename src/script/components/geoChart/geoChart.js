@@ -6,13 +6,13 @@ class GeoChart extends HTMLElement {
     constructor() {
 
         super();
-        this._dataCountries = null;
-        this._dataCountry = null;
+        this.isModalOpen = false;
         this.render();
         this.getData();
         
     }
 
+    // data all country
     get dataCountries() {
         return this._dataCountries;
     }
@@ -21,6 +21,7 @@ class GeoChart extends HTMLElement {
         this._dataCountries = data;
     }
 
+    // data country
     get dataCountry() {
         return this._dataCountry;
     }
@@ -29,42 +30,54 @@ class GeoChart extends HTMLElement {
         this._dataCountry = data;
     }
 
+    // data global
+    get dataGlobal() {
+        return this._dataGlobal;
+    }
+
+    set dataGlobal(data) {
+        this._dataGlobal = data;
+    }
+
     
     getData() {
 
-        // get data from multiple API
-        Promise.all(
-            [
-                dataSource.getData('https://covid.mathdro.id/api'),
-                dataSource.getData('https://api.kawalcorona.com/')
-            ])
-            .then(([globalCases,countriesCase]) => {
+        // get data from API
+        dataSource.getData('https://api.covid19api.com/summary', {
+            header : {
+                "X-Access-Token" : process.env.TOKEN,
+                "Content-Type" : "application/json"
+            }
+        })        
+            .then(({Global, Countries}) => {
 
-                this.dataCountries = countriesCase; //set data all country
-
-                const dataTable = [['Negara','Meninggal']];
-                
-                countriesCase.forEach( data => {
-                
-                    const region = data.attributes.Country_Region;
-                    const deathCases = data.attributes.Deaths;
-                    
-                    dataTable.push([region, deathCases]); //add data (per country) region and deathCases to dataTable
-                    
-                });
-                this.loadDataVisualizationMap(dataTable); //Load dataTable to data visualization
-                
-                // render data global
-                document.querySelector('.data_global').innerHTML = `
-                    <div><p style="color : yellow;">${globalCases.confirmed.value}</p><p>kasus</p></div>
-                    <div><p style="color : red;">${globalCases.deaths.value}</p><p>meninggal</p></div>
-                    <div><p style="color : limegreen;">${globalCases.recovered.value}</p><p>sembuh</p></div>
-                    `;
+                this.dataCountries = Countries; //set data all country
+                this.dataGlobal = Global;
+                this.loadDataVisualization();
             })
 
     }
 
-    loadDataVisualizationMap(dataTable) {
+    loadDataVisualization() {
+
+        const dataTable = [['Code', 'Negara', 'Meninggal']];
+
+        this.dataCountries.forEach( data => {
+                
+            const code = data.CountryCode;
+            const country = data.Country;
+            const deathCases = data.TotalDeaths;
+            
+            dataTable.push([code, country , deathCases]); //add data (per country) region and deathCases to dataTable
+            
+        });
+
+        //  render data global
+                document.querySelector('.data_global').innerHTML = `
+                    <div><p style="color : yellow;">${this.dataGlobal.TotalConfirmed}</p><p>kasus</p></div>
+                    <div><p style="color : red;">${this.dataGlobal.TotalDeaths}</p><p>meninggal</p></div>
+                    <div><p style="color : limegreen;">${this.dataGlobal.TotalRecovered}</p><p>sembuh</p></div>
+                    `;
 
         google.charts.load('current', {
             'packages' : ['geochart'],
@@ -89,25 +102,45 @@ class GeoChart extends HTMLElement {
 
                 selection.forEach(select => {
 
-                    country = dataVisualization.getValue(select.row , 0); //get country name by click some country on chart
+                    country = dataVisualization.getValue(select.row , 1); //get country name by click some country on chart
 
                 }); 
+                
+                // set data country by filtering data countries by country name
+                const countryCases = this.dataCountries.filter(data => {
 
-                // get data country by filtering data countries by country name
-                let dataCountry = this.dataCountries.filter(data => {
+                    return data.Country === country;
+ 
+                 });
 
-                   return data.attributes.Country_Region === country;
+                if (countryCases.length !== 0) {
+                    this.dataCountry = countryCases;
+                } 
 
-                });
-
-                // set data country
-                this.dataCountry = dataCountry;
+                this.showBoxDetail();
 
             }
 
+            const checkMedia = () => {
+                if (window.matchMedia('(max-width: 500px)').matches) {
+                    return 200;
+                } else if (window.matchMedia('(max-width: 720px)').matches) {
+                    return 300;
+                } else {
+                    return 400;
+                }
+
+            }
+
+
             const chart = new google.visualization.GeoChart(document.getElementById('geo_chart'));
             const dataVisualization = google.visualization.arrayToDataTable(data);
-            const options = {};
+            const options = {
+                keepAspecRatio : true,
+                legend : 'none',
+                height : checkMedia(),
+            };
+
             chart.draw(dataVisualization , options);
             google.visualization.events.addListener(chart, 'select' , chartOnclickHandler);
 
@@ -115,17 +148,40 @@ class GeoChart extends HTMLElement {
 
     }
 
+    showBoxDetail() {
+
+        const detail_wrapper = document.getElementById('detail_wrapper');
+        const box_detail = document.querySelector('box-detail');
+
+        if (box_detail) {
+            box_detail.remove();
+        }
+
+        const createElementBoxDetail = document.createElement('box-detail');
+        detail_wrapper.appendChild(createElementBoxDetail);
+        createElementBoxDetail.dataDetail = this.dataCountry;
+        detail_wrapper.style.width = '100%';
+        detail_wrapper.style.display = 'flex';
+        detail_wrapper.style.height = 'max-content';
+
+
+    }
+
     // render component
     render() {
 
         this.innerHTML = `
-        <div class="data_visualization">
-            <div class="data_global"></div>
-            <div id="geo_chart"></div>
-        </div>`;
+        <section id="Kasus" class="data_visualization">
+            <div class="data_wrapper">
+                <div class="data_global"></div>
+                <div id="geo_chart"></div>
+            </div>
+            <div id="detail_wrapper"></div>
+        </section>`;
 
     }
 
 }
 
 customElements.define('geo-chart', GeoChart);
+export default GeoChart;
