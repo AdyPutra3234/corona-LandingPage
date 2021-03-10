@@ -3,13 +3,11 @@ import './geoChart.css';
 
 class GeoChart extends HTMLElement {
 
-    constructor() {
+    connectedCallback() {
 
-        super();
-        this.isModalOpen = false;
         this.render();
         this.getData();
-        
+
     }
 
     // data all country
@@ -55,6 +53,9 @@ class GeoChart extends HTMLElement {
                 this.dataGlobal = Global;
                 this.loadDataVisualization();
             })
+            .catch( (error) => {
+                document.getElementById('Kasus').innerHTML = `<p>Gagal Mengambil Data : ${error}</p>`;
+            });
 
     }
 
@@ -74,7 +75,7 @@ class GeoChart extends HTMLElement {
 
         //  render data global
                 document.querySelector('.data_global').innerHTML = `
-                    <div><p style="color : yellow;">${this.dataGlobal.TotalConfirmed}</p><p>kasus</p></div>
+                    <div><p style="color : rgb(237, 237, 0);">${this.dataGlobal.TotalConfirmed}</p><p>kasus</p></div>
                     <div><p style="color : red;">${this.dataGlobal.TotalDeaths}</p><p>meninggal</p></div>
                     <div><p style="color : limegreen;">${this.dataGlobal.TotalRecovered}</p><p>sembuh</p></div>
                     `;
@@ -160,8 +161,6 @@ class GeoChart extends HTMLElement {
         const createElementBoxDetail = document.createElement('box-detail');
         detail_wrapper.appendChild(createElementBoxDetail);
         createElementBoxDetail.dataDetail = this.dataCountry;
-        detail_wrapper.style.width = '100%';
-        detail_wrapper.style.display = 'flex';
         detail_wrapper.style.height = 'max-content';
 
 

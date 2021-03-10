@@ -12,10 +12,12 @@ class Detail extends HTMLElement {
 
         this.innerHTML = `
             <div class="detail" >
-                <div style="font-size:1.2rem;">${this._data.Country}</div>
-                <div style="color:yellow;">${this._data.TotalConfirmed}</div>
-                <div style="color:red;">${this._data.TotalDeaths}</div>
-                <div style="color:green;">${this._data.TotalRecovered}</div>
+                <p style="font-size:1.2rem;">${this._data.Country}</p>
+                <div class="detail-case">
+                    <div style="color:yellow;">${this._data.TotalConfirmed}</div>
+                    <div style="color:red;">${this._data.TotalDeaths}</div>
+                    <div style="color:limegreen;">${this._data.TotalRecovered}</div>
+                </div>
                 <div><button id="close_detail">close</button></div>
             </div>`;
 
