@@ -29,7 +29,7 @@ module.exports = {
 
         new HTMLWebpackPlugin ({
             template : 'src/index.html',
-            filename : 'index1.html'
+            filename : 'index.html'
         }),
 
         new webpack.DefinePlugin({
