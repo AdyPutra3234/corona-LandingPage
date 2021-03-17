@@ -6,7 +6,7 @@ This project created with implementing [web components](https://www.webcomponent
 
 ## Getting Started
 
-Before start please configure your own .env file.
+Before start, create and configure your own .env file.
 
 ### Install the package
 
