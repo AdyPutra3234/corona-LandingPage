@@ -42,7 +42,8 @@ module.exports = {
     ],
 
     devServer : {
-        index : 'index.bundle.html',
+        historyApiFallback: true,
+        index : 'index.html',
         compress : true,
         port : process.env.PORT || 5050
     } 
