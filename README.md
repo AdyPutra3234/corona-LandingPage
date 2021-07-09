@@ -2,7 +2,7 @@
 
 This project created with implementing [web components](https://www.webcomponents.org/).
 
-![landing page](./ss.png)
+<img src="./corona.png" alt="corona_landing_page-project" width="600px"/>
 
 ## Getting Started
 

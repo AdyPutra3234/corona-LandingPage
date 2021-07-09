@@ -4,7 +4,6 @@ class Detail extends HTMLElement {
 
     set dataDetail(data) {
         this._data = data[0];
-        console.log(this._data);
         this.render();
     }
     
